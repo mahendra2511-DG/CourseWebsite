@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DataPlusMagic — Free Certification Courses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080C14;
+      --surface: #0E1520;
+      --card: #111827;
+      --card-hover: #162033;
+      --border: #1E2D45;
+      --accent: #00D4FF;
+      --accent2: #7C3AED;
+      --accent3: #10B981;
+      --text: #E8EDF5;
+      --muted: #6B7FA3;
+      --tag-bg: #0D1F35;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BG ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,12,20,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: var(--bg) !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover { opacity: 0.9; background: var(--accent) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 24px 80px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--accent3);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .stat { text-align: center; }
+
+    .stat .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat .label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 32px rgba(0,212,255,0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 48px rgba(0,212,255,0.35);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); background: var(--tag-bg); }
+
+    /* ── FILTER BAR ── */
+    .filter-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 32px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      padding: 7px 16px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--tag-bg);
+    }
+
+    /* ── COURSE GRID ── */
+    .courses-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .count-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,212,255,0.1);
+      background: var(--card-hover);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    /* Category colors */
+    .card[data-cat="snowflake"]::before { background: linear-gradient(90deg, #29B5E8, #00A9FF); }
+    .card[data-cat="databricks"]::before { background: linear-gradient(90deg, #FF3621, #FF6B35); }
+    .card[data-cat="microsoft"]::before { background: linear-gradient(90deg, #00A4EF, #7FBA00); }
+    .card[data-cat="aws"]::before { background: linear-gradient(90deg, #FF9900, #FFB347); }
+    .card[data-cat="google"]::before { background: linear-gradient(90deg, #4285F4, #34A853); }
+    .card[data-cat="ai"]::before { background: linear-gradient(90deg, #7C3AED, #A78BFA); }
+    .card[data-cat="other"]::before { background: linear-gradient(90deg, #10B981, #34D399); }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .free-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: rgba(16,185,129,0.12);
+      color: var(--accent3);
+      border: 1px solid rgba(16,185,129,0.3);
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .card h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .enroll-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,212,255,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(0,212,255,0.2);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .enroll-btn:hover {
+      background: rgba(0,212,255,0.16);
+      border-color: var(--accent);
+    }
+
+    .arrow-icon { font-size: 0.85rem; transition: transform 0.2s; }
+    .card:hover .arrow-icon { transform: translateX(3px); }
+
+    .udemy-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── COMMUNITY SECTION ── */
+    .community {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 24px;
+      text-align: center;
+    }
+
+    .community h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .community p {
+      color: var(--muted);
+      margin-bottom: 36px;
+      font-size: 0.95rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .social-btn:hover { transform: translateY(-2px); }
+
+    .social-btn.telegram { background: rgba(0,136,204,0.12); color: #29B6F6; border-color: rgba(41,182,246,0.3); }
+    .social-btn.telegram:hover { box-shadow: 0 8px 24px rgba(41,182,246,0.2); }
+
+    .social-btn.youtube { background: rgba(255,0,0,0.1); color: #F87171; border-color: rgba(248,113,113,0.3); }
+    .social-btn.youtube:hover { box-shadow: 0 8px 24px rgba(248,113,113,0.2); }
+
+    .social-btn.medium { background: rgba(255,255,255,0.05); color: #E8EDF5; border-color: rgba(232,237,245,0.2); }
+    .social-btn.medium:hover { box-shadow: 0 8px 24px rgba(232,237,245,0.1); }
+
+    .social-btn.linkedin { background: rgba(10,102,194,0.15); color: #60A5FA; border-color: rgba(96,165,250,0.3); }
+    .social-btn.linkedin:hover { box-shadow: 0 8px 24px rgba(96,165,250,0.2); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── HIDDEN for filter ── */
+    .card.hidden { display: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero h1 { letter-spacing: -1px; }
+      .hero-stats { gap: 28px; }
+      .nav-links { display: none; }
+      .courses-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: reveal 0.4s forwards;
+    }
+    @keyframes reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card:nth-child(1)  { animation-delay: 0.05s }
+    .card:nth-child(2)  { animation-delay: 0.08s }
+    .card:nth-child(3)  { animation-delay: 0.11s }
+    .card:nth-child(4)  { animation-delay: 0.14s }
+    .card:nth-child(5)  { animation-delay: 0.17s }
+    .card:nth-child(6)  { animation-delay: 0.20s }
+    .card:nth-child(7)  { animation-delay: 0.23s }
+    .card:nth-child(8)  { animation-delay: 0.26s }
+    .card:nth-child(9)  { animation-delay: 0.29s }
+    .card:nth-child(10) { animation-delay: 0.32s }
+    .card:nth-child(11) { animation-delay: 0.35s }
+    .card:nth-child(12) { animation-delay: 0.38s }
+    .card:nth-child(13) { animation-delay: 0.41s }
+    .card:nth-child(14) { animation-delay: 0.44s }
+    .card:nth-child(15) { animation-delay: 0.47s }
+    .card:nth-child(16) { animation-delay: 0.50s }
+    .card:nth-child(17) { animation-delay: 0.53s }
+    .card:nth-child(18) { animation-delay: 0.56s }
+    .card:nth-child(19) { animation-delay: 0.59s }
+    .card:nth-child(20) { animation-delay: 0.62s }
+    .card:nth-child(21) { animation-delay: 0.65s }
+    .card:nth-child(22) { animation-delay: 0.68s }
+    .card:nth-child(23) { animation-delay: 0.71s }
+    .card:nth-child(24) { animation-delay: 0.74s }
+    .card:nth-child(25) { animation-delay: 0.77s }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Data<span>+</span>Magic</a>
+  <div class="nav-links">
+    <a href="#courses">Courses</a>
+    <a href="#community">Community</a>
+    <a href="https://www.youtube.com/@Dataplusmagic" target="_blank">YouTube</a>
+    <a href="https://t.me/+-uC6Pq6f90hlYzA1" target="_blank" class="nav-cta">Join Free →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    ALL COURSES FREE WITH COUPON LINKS
+  </div>
+  <h1>Master <span class="highlight">Data &amp; Cloud</span><br>Certifications for Free</h1>
+  <p>Practice tests and exam prep for Snowflake, Databricks, Microsoft, AWS, Google Cloud and more — all Udemy courses unlocked with direct coupon links.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="num">25+</span>
+      <span class="label">FREE COURSES</span>
+    </div>
+    <div class="stat">
+      <span class="num">10+</span>
+      <span class="label">PLATFORMS</span>
+    </div>
+    <div class="stat">
+      <span class="num">100%</span>
+      <span class="label">FREE ACCESS</span>
+    </div>
+  </div>
+  <div class="hero-actions">
+    <a href="#courses" class="btn-primary">Browse Courses ↓</a>
+    <a href="https://t.me/+-uC6Pq6f90hlYzA1" target="_blank" class="btn-secondary">💬 Join Telegram</a>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="filter-wrap" id="courses">
+  <div class="filter-bar">
+    <span class="filter-label">filter:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="snowflake">Snowflake</button>
+    <button class="filter-btn" data-filter="databricks">Databricks</button>
+    <button class="filter-btn" data-filter="microsoft">Microsoft</button>
+    <button class="filter-btn" data-filter="aws">AWS</button>
+    <button class="filter-btn" data-filter="google">Google</button>
+    <button class="filter-btn" data-filter="ai">AI / ML</button>
+    <button class="filter-btn" data-filter="other">Other</button>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section class="courses-section">
+  <div class="section-header">
+    <h2>All Free Courses</h2>
+    <span class="count-badge" id="count-badge">25 courses</span>
+  </div>
+
+  <div class="courses-grid" id="coursesGrid">
+
+    <!-- Power BI -->
+    <a class="card" data-cat="microsoft"
+       href="https://www.udemy.com/course/pl-300-power-bi-ultimate-guide/?couponCode=819025C1D459F05E2662"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(0,164,239,0.1);">📊</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>PL-300: Power BI Data Analyst — Ultimate Guide</h3>
+      <div class="card-tags">
+        <span class="tag">Microsoft</span>
+        <span class="tag">PL-300</span>
+        <span class="tag">Practice Test</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- DP-600 Fabric -->
+    <a class="card" data-cat="microsoft"
+       href="https://www.udemy.com/course/dp-600-microsoft-fabric-analytics-engineer-4-practice-test/?couponCode=3DE0AEC8F448EFBBCDF3"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(0,164,239,0.1);">🧵</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>DP-600: Microsoft Fabric Analytics Engineer Associate</h3>
+      <div class="card-tags">
+        <span class="tag">Microsoft</span>
+        <span class="tag">DP-600</span>
+        <span class="tag">Fabric</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Domo -->
+    <a class="card" data-cat="other"
+       href="https://www.udemy.com/course/domo-professional-certification/?couponCode=CDEA109A9B18A3F908C3"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(16,185,129,0.1);">📈</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Domo Professional Certification</h3>
+      <div class="card-tags">
+        <span class="tag">Domo</span>
+        <span class="tag">BI</span>
+        <span class="tag">Practice Test</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- SnowPro Core -->
+    <a class="card" data-cat="snowflake"
+       href="https://www.udemy.com/course/snowpro-core-certification-practice-tests-2025-cof-c02/?couponCode=D8743D6D55429DFDB73A"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(41,181,232,0.1);">❄️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>SnowPro Core Certification (COF-C02)</h3>
+      <div class="card-tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">COF-C02</span>
+        <span class="tag">Core</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- SnowPro Gen AI -->
+    <a class="card" data-cat="snowflake"
+       href="https://www.udemy.com/course/practice-tests-for-the-snowpro-gen-ai-specialist-exam-j/?couponCode=160DB624771A92AD1A98"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(41,181,232,0.1);">🤖</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>SnowPro Specialty: Gen AI Specialist Certification</h3>
+      <div class="card-tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">Gen AI</span>
+        <span class="tag">Specialty</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- CDMP -->
+    <a class="card" data-cat="other"
+       href="https://www.udemy.com/course/cdmp-practice-tests-dama-data-management-certification/?couponCode=BCEEADA728F31970BE70"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(16,185,129,0.1);">📋</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>CDMP® Practice Test — DAMA Data Management</h3>
+      <div class="card-tags">
+        <span class="tag">DAMA</span>
+        <span class="tag">CDMP</span>
+        <span class="tag">Data Governance</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- SnowPro Advanced Data Analyst -->
+    <a class="card" data-cat="snowflake"
+       href="https://www.udemy.com/course/snowflake-snowpro-advanced-data-analyst-daa-c01/?couponCode=6C478BBD656F8F9C77DC"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(41,181,232,0.1);">❄️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Snowflake SnowPro Advanced: Data Analyst (DAA-C01)</h3>
+      <div class="card-tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">Advanced</span>
+        <span class="tag">DAA-C01</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- SnowPro Advanced Architect -->
+    <a class="card" data-cat="snowflake"
+       href="https://www.udemy.com/course/snowpro-advanced-architect-exam-prep-ara-c01/?couponCode=EE183A5434E4A2297BF2"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(41,181,232,0.1);">🏗️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>SnowPro® Advanced Architect (ARA-C01)</h3>
+      <div class="card-tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">Advanced</span>
+        <span class="tag">Architect</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Claude Certified Architect -->
+    <a class="card" data-cat="ai"
+       href="https://www.udemy.com/course/claude-certified-architect-y/?couponCode=6472928329C0588A835F"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(124,58,237,0.1);">🧠</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Claude Certified Architect Foundations (CCAF)</h3>
+      <div class="card-tags">
+        <span class="tag">Claude AI</span>
+        <span class="tag">Architect</span>
+        <span class="tag">CCAF</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Databricks DE Associate -->
+    <a class="card" data-cat="databricks"
+       href="https://www.udemy.com/course/databricks-certified-data-engineer-associate-practice-exams-a/?couponCode=E0546939FF50758CA394"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,54,33,0.1);">🔥</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Databricks Certified Data Engineer Associate</h3>
+      <div class="card-tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">Data Engineering</span>
+        <span class="tag">Associate</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- SnowPro Advanced Data Scientist -->
+    <a class="card" data-cat="snowflake"
+       href="https://www.udemy.com/course/snowflake-snowpro-advanced-data-scientist-dsa-c03/?couponCode=36E3F7A016FA78787059"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(41,181,232,0.1);">🔬</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Snowflake SnowPro® Advanced: Data Scientist (DSA-C03)</h3>
+      <div class="card-tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">Advanced</span>
+        <span class="tag">Data Science</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- AI-300 MLOps -->
+    <a class="card" data-cat="microsoft"
+       href="https://www.udemy.com/course/ai-300-microsoft-certified-mlops-engineer-associate-2026-i/?couponCode=3B98FFB8AAC9889A5E4A"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(0,164,239,0.1);">⚙️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>AI-300: Microsoft Certified MLOps Engineer Associate</h3>
+      <div class="card-tags">
+        <span class="tag">Microsoft</span>
+        <span class="tag">AI-300</span>
+        <span class="tag">MLOps</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- SnowPro Native Apps -->
+    <a class="card" data-cat="snowflake"
+       href="https://www.udemy.com/course/snowpro-specialty-native-apps-exam-2026/?couponCode=48C94B189988D3093665"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(41,181,232,0.1);">📦</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>SnowPro Specialty: Native Apps Exam 2026</h3>
+      <div class="card-tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">Native Apps</span>
+        <span class="tag">Specialty</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Databricks Gen AI -->
+    <a class="card" data-cat="databricks"
+       href="https://www.udemy.com/course/databricks-generative-ai-engineer-associate-practice-tests-n/?couponCode=C01D29B2CD9558F3738A"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,54,33,0.1);">🤖</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Databricks Generative AI Engineer Associate</h3>
+      <div class="card-tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">Gen AI</span>
+        <span class="tag">Associate</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Databricks Data Analyst -->
+    <a class="card" data-cat="databricks"
+       href="https://www.udemy.com/course/databricks-certified-data-analyst-associate-practice-tests-e/?couponCode=3E09750E6C474BCE38C4"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,54,33,0.1);">📊</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Databricks Certified Data Analyst Associate</h3>
+      <div class="card-tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">Data Analysis</span>
+        <span class="tag">Associate</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- AI Governance -->
+    <a class="card" data-cat="ai"
+       href="https://www.udemy.com/course/artificial-intelligence-governance-profaigp-practice-test/?couponCode=0D96F7DD1896AD7E2D93"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(124,58,237,0.1);">⚖️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Artificial Intelligence Governance (PROFAIGP)</h3>
+      <div class="card-tags">
+        <span class="tag">AI Governance</span>
+        <span class="tag">Ethics</span>
+        <span class="tag">Practice Test</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- AWS AI Practitioner -->
+    <a class="card" data-cat="aws"
+       href="https://www.udemy.com/course/aws-certified-ai-practitioner-aif-c01-practice-test-2026/?couponCode=28D94EA2D4B214A427E0"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,153,0,0.1);">☁️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>AWS Certified AI Practitioner (AIF-C01) 2026</h3>
+      <div class="card-tags">
+        <span class="tag">AWS</span>
+        <span class="tag">AIF-C01</span>
+        <span class="tag">AI Practitioner</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- SnowPro Advanced Data Engineer -->
+    <a class="card" data-cat="snowflake"
+       href="https://www.udemy.com/course/snowpro-advanced-data-engineer-certification-exam-dea-c02-l/?couponCode=A08E38A56CFB77341205"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(41,181,232,0.1);">🛠️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>SnowPro Advanced: Data Engineer (DEA-C02)</h3>
+      <div class="card-tags">
+        <span class="tag">Snowflake</span>
+        <span class="tag">Advanced</span>
+        <span class="tag">DEA-C02</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Databricks DE Professional -->
+    <a class="card" data-cat="databricks"
+       href="https://www.udemy.com/course/databricks-certified-data-engineer-professional-tests-2026/?couponCode=4F5E10014E609F2C5DA4"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,54,33,0.1);">🔥</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Databricks Certified Data Engineer Professional 2026</h3>
+      <div class="card-tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">Data Engineering</span>
+        <span class="tag">Professional</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Databricks Apache Spark -->
+    <a class="card" data-cat="databricks"
+       href="https://www.udemy.com/course/databricks-certified-associate-developer-apache-spark-2026/?couponCode=0C4C0A4BBF184B7C7784"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,54,33,0.1);">⚡</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Databricks Certified Associate Developer — Apache Spark 2026</h3>
+      <div class="card-tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">Apache Spark</span>
+        <span class="tag">Developer</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Databricks ML Associate -->
+    <a class="card" data-cat="databricks"
+       href="https://www.udemy.com/course/databricks-certified-machine-learning-associate-test-2026/?couponCode=A44FE5AC92478879CDBB"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,54,33,0.1);">🤖</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Databricks Certified Machine Learning Associate 2026</h3>
+      <div class="card-tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Associate</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Databricks ML Professional -->
+    <a class="card" data-cat="databricks"
+       href="https://www.udemy.com/course/databricks-certified-machine-learning-professional-2026-m/?couponCode=A089D7B59886617D5A92"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(255,54,33,0.1);">🎓</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Databricks Certified Machine Learning Professional 2026</h3>
+      <div class="card-tags">
+        <span class="tag">Databricks</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Professional</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- Google Cloud Architect -->
+    <a class="card" data-cat="google"
+       href="https://www.udemy.com/course/google-professional-cloud-architect-pca-exams-2026-g/?couponCode=87C08C2BC424256946ED"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(66,133,244,0.1);">🏛️</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>Google Professional Cloud Architect (PCA) 2026</h3>
+      <div class="card-tags">
+        <span class="tag">Google Cloud</span>
+        <span class="tag">GCP</span>
+        <span class="tag">Architect</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+    <!-- GitHub Copilot -->
+    <a class="card" data-cat="ai"
+       href="https://www.udemy.com/course/github-copilot-certification-practice-exams-gh-300-2026/?couponCode=626BF21E43EBAB07BDAD"
+       target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon" style="background:rgba(124,58,237,0.1);">🐙</div>
+        <span class="free-tag">FREE</span>
+      </div>
+      <h3>GitHub Copilot Certification (GH-300) 2026</h3>
+      <div class="card-tags">
+        <span class="tag">GitHub</span>
+        <span class="tag">Copilot</span>
+        <span class="tag">GH-300</span>
+      </div>
+      <div class="card-footer">
+        <span class="udemy-label">udemy.com</span>
+        <span class="enroll-btn">Enroll Free <span class="arrow-icon">→</span></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <h2>Join the Community</h2>
+  <p>Get notified of new free coupons, certification tips, and study resources.</p>
+  <div class="social-links">
+    <a class="social-btn telegram" href="https://t.me/+-uC6Pq6f90hlYzA1" target="_blank" rel="noopener">
+      ✈️ Telegram Helpline
+    </a>
+    <a class="social-btn youtube" href="https://www.youtube.com/@Dataplusmagic" target="_blank" rel="noopener">
+      ▶️ YouTube Channel
+    </a>
+    <a class="social-btn medium" href="https://medium.com/@mahendraa1188" target="_blank" rel="noopener">
+      ✍️ Medium Blog
+    </a>
+    <a class="social-btn linkedin" href="https://www.linkedin.com/in/mahendra-singh-%F0%9F%87%AE%F0%9F%87%B3%F0%9F%9A%80%E2%9D%84%EF%B8%8F-%F0%9F%90%8D-%F0%9F%A6%84-83699485/" target="_blank" rel="noopener">
+      💼 LinkedIn
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <a href="https://www.youtube.com/@Dataplusmagic" target="_blank">DataPlusMagic</a> · All coupon links are subject to availability on Udemy.</p>
+</footer>
+
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+  const countBadge = document.getElementById('count-badge');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      countBadge.textContent = visible + (visible === 1 ? ' course' : ' courses');
+    });
+  });
+</script>
+
+</body>
+</html>
